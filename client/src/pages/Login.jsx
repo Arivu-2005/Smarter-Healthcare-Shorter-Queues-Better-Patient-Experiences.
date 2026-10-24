@@ -30,12 +30,21 @@ const Login = ({ setActiveTab }) => {
     setLoading(true);
 
     try {
+      let loggedUser;
       if (isRegister) {
-        await register({ name, email, password, phone, role });
+        loggedUser = await register({ name, email, password, phone, role });
       } else {
-        await login(email, password);
+        loggedUser = await login(email, password);
       }
-      setActiveTab('home');
+      if (loggedUser) {
+        if (loggedUser.role === 'patient') setActiveTab('patient-dashboard');
+        else if (loggedUser.role === 'doctor') setActiveTab('doctor-dashboard');
+        else if (loggedUser.role === 'receptionist') setActiveTab('reception-dashboard');
+        else if (loggedUser.role === 'admin') setActiveTab('admin-dashboard');
+        else setActiveTab('home');
+      } else {
+        setActiveTab('home');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Authentication failed. Please verify credentials.');
     } finally {
@@ -43,11 +52,29 @@ const Login = ({ setActiveTab }) => {
     }
   };
 
-  const handleDemoSelect = (demoEmail, demoRole) => {
+  const handleDemoSelect = async (demoEmail, demoRole) => {
     setEmail(demoEmail);
     setPassword('password123');
     setRole(demoRole);
     setIsRegister(false);
+    setError('');
+    setLoading(true);
+
+    try {
+      const loggedUser = await login(demoEmail, 'password123');
+      if (loggedUser) {
+        if (loggedUser.role === 'patient') setActiveTab('patient-dashboard');
+        else if (loggedUser.role === 'doctor') setActiveTab('doctor-dashboard');
+        else if (loggedUser.role === 'receptionist') setActiveTab('reception-dashboard');
+        else if (loggedUser.role === 'admin') setActiveTab('admin-dashboard');
+        else setActiveTab('home');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Instant demo sign-in failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

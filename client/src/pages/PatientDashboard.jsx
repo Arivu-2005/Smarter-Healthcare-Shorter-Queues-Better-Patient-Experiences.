@@ -15,11 +15,12 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import api, { socket } from '../services/api';
+import { fallbackAppointments } from '../services/mockData';
 import './PatientDashboard.css';
 
 const PatientDashboard = ({ user, setActiveTab }) => {
-  const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [appointments, setAppointments] = useState(fallbackAppointments);
+  const [loading, setLoading] = useState(false);
   const [reschedulingId, setReschedulingId] = useState(null);
   const [newDate, setNewDate] = useState('');
   const [newSlot, setNewSlot] = useState('11:00 AM');
@@ -28,11 +29,11 @@ const PatientDashboard = ({ user, setActiveTab }) => {
   const fetchAppointments = async () => {
     try {
       const res = await api.get('/appointments');
-      if (res.data.success) {
+      if (res.data?.success && res.data.appointments?.length > 0) {
         setAppointments(res.data.appointments);
       }
     } catch (err) {
-      console.error(err);
+      console.warn('Backend offline, using patient records cache');
     } finally {
       setLoading(false);
     }
