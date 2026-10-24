@@ -52,10 +52,6 @@ const DoctorDashboard = ({ user }) => {
       setLoading(false);
     }
   };
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     fetchDoctorAppointments();
