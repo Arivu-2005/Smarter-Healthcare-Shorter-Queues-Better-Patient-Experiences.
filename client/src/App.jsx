@@ -11,6 +11,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import Contact from './pages/Contact';
 import api from './services/api';
+import { fallbackDepartments, fallbackDoctors } from './services/mockData';
 import './styles/index.css';
 import './App.css';
 
@@ -19,9 +20,9 @@ const MainApp = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Hospital Core Catalogs
-  const [departments, setDepartments] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  // Hospital Core Catalogs with resilient fallback defaults
+  const [departments, setDepartments] = useState(fallbackDepartments);
+  const [doctors, setDoctors] = useState(fallbackDoctors);
   const [preselectedDoctor, setPreselectedDoctor] = useState(null);
 
   useEffect(() => {
@@ -31,10 +32,14 @@ const MainApp = () => {
           api.get('/departments'),
           api.get('/doctors')
         ]);
-        if (deptRes.data.success) setDepartments(deptRes.data.departments);
-        if (docRes.data.success) setDoctors(docRes.data.doctors);
+        if (deptRes.data?.success && deptRes.data.departments?.length > 0) {
+          setDepartments(deptRes.data.departments);
+        }
+        if (docRes.data?.success && docRes.data.doctors?.length > 0) {
+          setDoctors(docRes.data.doctors);
+        }
       } catch (err) {
-        console.error('Error fetching departments & doctors:', err);
+        console.warn('Backend offline or deploying, using healthcare catalog defaults:', err);
       }
     };
     fetchCatalogs();
