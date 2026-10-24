@@ -1,0 +1,280 @@
+.admin-dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.admin-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.35rem;
+}
+
+.admin-title-row h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--gray-900);
+}
+
+.admin-title-row p {
+  color: var(--gray-500);
+  font-size: 0.92rem;
+}
+
+.btn-refresh-admin {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  border: 1px solid var(--gray-300);
+  color: var(--gray-700);
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+
+.btn-refresh-admin:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* KPI Stat Cards */
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background-color: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-blue .kpi-icon-box { background-color: var(--primary-light); color: var(--primary); }
+.card-amber .kpi-icon-box { background-color: var(--warning-light); color: var(--warning); }
+.card-teal .kpi-icon-box { background-color: var(--secondary-light); color: var(--secondary); }
+.card-green .kpi-icon-box { background-color: var(--success-light); color: var(--success); }
+
+.kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+.kpi-val {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  line-height: 1.1;
+  margin: 0.15rem 0;
+}
+
+.kpi-sub {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Two Columns */
+.admin-two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-panel {
+  background-color: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.full-width-panel {
+  margin-top: 1.5rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.panel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.panel-header-left h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+/* Department performance */
+.dept-perf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dept-perf-item {
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.dept-perf-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+}
+
+.dept-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.dept-sub {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+}
+
+.dept-load-badge {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.dept-capacity-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.capacity-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+.capacity-bar-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.capacity-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: var(--radius-full);
+}
+
+/* Doctor Roster Table */
+.admin-doc-table, .admin-master-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.admin-doc-table th, .admin-master-table th {
+  padding: 0.75rem 1rem;
+  background-color: var(--gray-50);
+  color: var(--gray-600);
+  font-weight: 600;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.admin-doc-table td, .admin-master-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.doc-spec-sub {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.room-chip {
+  background-color: var(--gray-100);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.on-duty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--success);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.on-duty-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--success);
+}
+
+@media (max-width: 992px) {
+  .admin-two-cols {
+    grid-template-columns: 1fr;
+  }
+}
