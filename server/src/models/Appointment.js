@@ -32,4 +32,15 @@ const AppointmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Prevent double bookings for same doctor on same date and timeslot (ignoring cancelled)
+AppointmentSchema.index(
+  { doctor: 1, date: 1, timeSlot: 1 },
+  { 
+    unique: true, 
+    partialFilterExpression: { status: { $nin: ['cancelled', 'completed'] } } 
+  }
+);
+AppointmentSchema.index({ date: 1, department: 1, tokenSequence: 1 });
+AppointmentSchema.index({ patient: 1, date: 1 });
+
 export default mongoose.model('Appointment', AppointmentSchema);

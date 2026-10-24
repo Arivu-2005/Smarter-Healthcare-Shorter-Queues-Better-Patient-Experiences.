@@ -165,7 +165,7 @@ export const updateAppointmentStatus = async (req, res, io) => {
       return res.status(404).json({ success: false, message: 'Appointment not found' });
     }
 
-    if (status) {
+    if (status && status !== appointment.status) {
       // Validate valid status transitions
       const validTransitions = {
         confirmed: ['checked_in', 'cancelled'],
